@@ -1,1 +1,1 @@
-from .keepAvailableImagesInTable import keepAvailableImagesInTable
+from .keepAvailableImagesInTab import keepAvailableImagesInTable
