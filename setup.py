@@ -8,7 +8,7 @@ setup(name='VLAP',
       author_email='gbndict@gmail.com',
       license='MIT',
       packages=['VLAP'],
-      install_requires=[
+      install_requvires=[
           'pandas',
       ],
       zip_safe=False)
