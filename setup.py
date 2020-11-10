@@ -1,11 +1,11 @@
 from setuptools import setup
 
-setup(name='funniest',
+setup(name='VLAP',
       version='0.1',
-      description='The funniest joke in the world',
-      url='http://github.com/storborg/funniest',
-      author='Flying Circus',
-      author_email='flyingcircus@example.com',
+      description='Varying Label Amounts Prediction',
+      url='https://github.com/gabriben/VLAP',
+      author='gabriben',
+      author_email='gbndict@gmail.com',
       license='MIT',
-      packages=['funniest'],
+      packages=['VLAP'],
       zip_safe=False)
