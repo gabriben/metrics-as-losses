@@ -2,6 +2,7 @@ import pandas as pd
 import os
 
 def keepAvailableImagesInTable(imageDir, labelDir):
+
     images = pd.DataFrame(os.listdir(imageDir), columns = ["imdbId"])
     images.replace(".jpg", "", regex = True, inplace = True)
     images = images[images['imdbId'].astype(str).str.isdigit()]
