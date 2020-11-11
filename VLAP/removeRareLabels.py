@@ -1,6 +1,6 @@
 # adapted from https://github.com/ashrefm/multi-label-soft-f1.git
 
-def removeRareLabels(movies):
+def removeRareLabels(movies, irrelevanceThreshold):
 
   # Get label frequencies in descending order
   label_freq = (movies['Genre']
@@ -8,7 +8,7 @@ def removeRareLabels(movies):
                 .explode().value_counts().sort_values(ascending=False))
 
   # Create a list of rare labels
-  rare = list(label_freq[label_freq<1000].index)
+  rare = list(label_freq[label_freq < irrelevanceThreshold].index)
   print("We will be ignoring these rare labels:", rare)
 
   # Transform Genre into a list of labels and remove the rare ones
