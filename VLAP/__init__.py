@@ -1,1 +1,2 @@
 from .keepAvailableImagesInTab import keepAvailableImagesInTable
+from .removeRareLabels import removeRareLabels
