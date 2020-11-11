@@ -1,4 +1,5 @@
 import pandas as pd
+import os
 
 def keepAvailableImagesInTable(imageDir, labelDir):
     i = pd.DataFrame(os.listdir(imageDir), columns = ["imdbId"])
