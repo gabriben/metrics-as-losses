@@ -1,4 +1,5 @@
 import tensorflow as tf
+import globals
 
 def parseFunction(filename, label):
     """Function that returns a tuple of normalized image array and labels array.
