@@ -8,7 +8,7 @@ setup(name='VLAP',
       author_email='gbndict@gmail.com',
       license='MIT',
       packages=['VLAP'],
-      install_requvires=[
+      install_requires=[
           'pandas',
           'sklearn',
           'tensorflow'
