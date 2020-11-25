@@ -1,4 +1,5 @@
 import tensorflow as tf
+from .parseFunction import parseFunction
 
 def createDataset(filenames, labels, is_training=True):
     """Load and parse dataset.
