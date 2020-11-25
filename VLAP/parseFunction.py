@@ -1,6 +1,6 @@
 import tensorflow as tf
 
-def parse_function(filename, label):
+def parseFunction(filename, label):
     """Function that returns a tuple of normalized image array and labels array.
     Args:
         filename: string representing path to image
