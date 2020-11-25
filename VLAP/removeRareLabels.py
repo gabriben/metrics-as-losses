@@ -1,4 +1,5 @@
 # adapted from https://github.com/ashrefm/multi-label-soft-f1.git
+import pandas as pd
 
 def removeRareLabels(movies, irrelevanceThreshold):
 
