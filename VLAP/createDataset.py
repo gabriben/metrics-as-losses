@@ -10,7 +10,7 @@ def createDataset(filenames, labels, BATCH_SIZE, SHUFFLE_BUFFER_SIZE, CHANNELS, 
     """
     
     # Create a first dataset of file paths and labels
-    dataset = tf.data.Dataset.from_tensor_slices(filenames, labels)
+    dataset = tf.data.Dataset.from_tensor_slices((filenames, labels))
     # Parse and preprocess observations in parallel
     dataset = dataset.map(parseFunction, num_parallel_calls=tf.data.experimental.AUTOTUNE)
     
