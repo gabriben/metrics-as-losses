@@ -16,9 +16,4 @@ def binarize(y_train, y_val):
     y_train_bin = mlb.transform(y_train)
     y_val_bin = mlb.transform(y_val)
 
-    # Print example of movie posters and their binary targets
-    print("some examples of binarized response")
-    for i in range(3):
-        print(X_train[i], y_train_bin[i])
-
     return(y_train_bin, y_val_bin)
