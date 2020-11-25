@@ -11,7 +11,7 @@ def createDataset(filenames, labels, is_training=True):
     # Create a first dataset of file paths and labels
     dataset = tf.data.Dataset.from_tensor_slices((filenames, labels))
     # Parse and preprocess observations in parallel
-    dataset = dataset.map(parse_function, num_parallel_calls=AUTOTUNE)
+    dataset = dataset.map(parseFunction, num_parallel_calls=AUTOTUNE)
     
     if is_training == True:
         # This is a small dataset, only load it once, and keep it in memory.
