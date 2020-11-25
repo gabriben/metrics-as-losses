@@ -10,6 +10,7 @@ setup(name='VLAP',
       packages=['VLAP'],
       install_requvires=[
           'pandas',
-          'sklearn'
+          'sklearn',
+          'tensorflow'
       ],
       zip_safe=False)
