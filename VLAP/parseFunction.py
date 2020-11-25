@@ -1,6 +1,6 @@
 import tensorflow as tf
 
-def parseFunction(filename, label):
+def parseFunction(filename, label, CHANNELS, IMG_SIZE):
     """Function that returns a tuple of normalized image array and labels array.
     Args:
         filename: string representing path to image
@@ -9,9 +9,9 @@ def parseFunction(filename, label):
     # Read an image from a file
     image_string = tf.io.read_file(filename)
     # Decode it into a dense vector
-    image_decoded = tf.image.decode_jpeg(image_string, channels=myglobals.CHANNELS)
+    image_decoded = tf.image.decode_jpeg(image_string, channels=CHANNELS)
     # Resize it to fixed shape
-    image_resized = tf.image.resize(image_decoded, [myglobals.IMG_SIZE, myglobals.IMG_SIZE])
+    image_resized = tf.image.resize(image_decoded, [IMG_SIZE, IMG_SIZE])
     # Normalize it from [0, 255] to [0.0, 1.0]
     image_normalized = image_resized / 255.0
 

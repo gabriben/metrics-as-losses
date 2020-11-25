@@ -1,7 +1,7 @@
 import tensorflow as tf
 from .parseFunction import parseFunction
 
-def createDataset(filenames, labels, BATCH_SIZE, AUTOTUNE, SHUFFLE_BUFFER_SIZE, is_training=True):
+def createDataset(filenames, labels, BATCH_SIZE, SHUFFLE_BUFFER_SIZE, CHANNELS, IMG_SIZE, is_training=True):
     """Load and parse dataset.
     Args:
         filenames: list of image paths
@@ -10,9 +10,9 @@ def createDataset(filenames, labels, BATCH_SIZE, AUTOTUNE, SHUFFLE_BUFFER_SIZE, 
     """
     
     # Create a first dataset of file paths and labels
-    dataset = tf.data.Dataset.from_tensor_slices((filenames, labels))
+    dataset = tf.data.Dataset.from_tensor_slices((filenames, labels, CHANNELS, IMG_SIZE))
     # Parse and preprocess observations in parallel
-    dataset = dataset.map(parseFunction, num_parallel_calls=AUTOTUNE)
+    dataset = dataset.map(parseFunction, num_parallel_calls=tf.data.experimental.AUTOTUNE)
     
     if is_training == True:
         # This is a small dataset, only load it once, and keep it in memory.
@@ -23,6 +23,6 @@ def createDataset(filenames, labels, BATCH_SIZE, AUTOTUNE, SHUFFLE_BUFFER_SIZE, 
     # Batch the data for multiple steps
     dataset = dataset.batch(BATCH_SIZE)
     # Fetch batches in the background while the model is training.
-    dataset = dataset.prefetch(buffer_size=AUTOTUNE)
+    dataset = dataset.prefetch(buffer_size=tf.data.experimental.AUTOTUNE)
     
     return dataset
