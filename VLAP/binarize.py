@@ -16,4 +16,4 @@ def binarize(y_train, y_val):
     y_train_bin = mlb.transform(y_train)
     y_val_bin = mlb.transform(y_val)
 
-    return(y_train_bin, y_val_bin)
+    return(y_train_bin, y_val_bin, N_LABELS)
