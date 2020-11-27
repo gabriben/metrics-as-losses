@@ -9,9 +9,9 @@ def parseFunction(filename, label):
     # Read an image from a file
     image_string = tf.io.read_file(filename)
     # Decode it into a dense vector
-    image_decoded = tf.image.decode_jpeg(image_string, channels=CHANNELS)
+    image_decoded = tf.image.decode_jpeg(image_string, channels=hypers.CHANNELS)
     # Resize it to fixed shape
-    image_resized = tf.image.resize(image_decoded, [IMG_SIZE, IMG_SIZE])
+    image_resized = tf.image.resize(image_decoded, [hypers.IMG_SIZE, hypers.IMG_SIZE])
     # Normalize it from [0, 255] to [0.0, 1.0]
     image_normalized = image_resized / 255.0
 
