@@ -9,7 +9,7 @@ from .attachHead import attachHead
 from .macroSoftF1 import macroSoftF1
 from .sigmoidF1 import sigmoidF1
 from .macroF1 import macroF1
-
+from .train import train
 
 
 

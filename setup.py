@@ -12,6 +12,7 @@ setup(name='VLAP',
           'pandas',
           'sklearn',
           'tensorflow',
-          'tensorflow_hub'
+          'tensorflow_hub',
+          'mlflow'
       ],
       zip_safe=False)
