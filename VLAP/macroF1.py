@@ -1,6 +1,6 @@
 import tensorflow as tf
 
-@tf.function
+# @tf.function
 def macroF1(y, y_hat, thresh=0.5):
     """Compute the macro F1-score on a batch of observations (average F1 across labels)
     

@@ -1,7 +1,7 @@
 import tensorflow as tf
 
-@tf.function
-def weighted_f1(y, y_hat):
+# @tf.function
+def weightedF1(y, y_hat):
     """Compute the weighted F1-score on a batch of observations (average F1 across labels)
     
     Args:

@@ -1,7 +1,7 @@
 import tensorflow as tf
 from .hyperparameters import *
 
-@tf.function
+# @tf.function
 def sigmoidF1(y, y_hat):
     """Compute the macro soft F1-score as a cost (average 1 - soft-F1 across all labels).
     Use probability values instead of binary predictions.
