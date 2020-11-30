@@ -6,4 +6,4 @@ def loadNet(modelURL, unfreezePretrain = False):
     pretrainedNet = hub.KerasLayer(modelURL,
                             input_shape=(IMG_SIZE,IMG_SIZE,CHANNELS))
     pretrainedNet.trainable = unfreezePretrain # freezing the pretrained network
-    return feature_extractor_layer
+    return pretrainedNet
