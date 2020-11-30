@@ -1,4 +1,4 @@
-from .keepAvailableImagesInTab import keepAvailableImagesInTable
+from .keepAvailableImagesInTab import keepAvailableImagesInTab
 from .removeRareLabels import removeRareLabels
 from .binarize import binarize
 from .parseFunction import parseFunction
