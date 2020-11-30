@@ -1,7 +1,7 @@
 import tensorflow as tf
 
-@tf.function
-def lossMacroSoftF1(y, y_hat):
+# @tf.function
+def macroSoftF1(y, y_hat):
     """Compute the macro soft F1-score as a cost (average 1 - soft-F1 across all labels).
     Use probability values instead of binary predictions.
     
@@ -20,4 +20,4 @@ def lossMacroSoftF1(y, y_hat):
     soft_f1 = 2*tp / (2*tp + fn + fp + 1e-16)
     cost = 1 - soft_f1 # reduce 1 - soft-f1 in order to increase soft-f1
     macro_cost = tf.reduce_mean(cost) # average on all labels
-    return macro_cost
+    return macroCost
