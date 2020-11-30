@@ -16,7 +16,7 @@
 # OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE
 
 
-def print_time(t):
+def printTime(t):
     """Function that converts time period in seconds into %h:%m:%s expression.
     Args:
         t (int): time period in seconds
