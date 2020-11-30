@@ -6,7 +6,6 @@
 # from .hyperparameters import *
 # from .loadNet import loadNet
 # from .attachHead import attachHead
-import os
 
 from os.path import dirname, basename, isfile, join
 import glob
