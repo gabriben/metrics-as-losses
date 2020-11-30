@@ -1,11 +1,5 @@
-# from .keepAvailableImagesInTab import keepAvailableImagesInTable
-# from .removeRareLabels import removeRareLabels
-# from .binarize import binarize
-# from .parseFunction import parseFunction
-# from .createDataset import createDataset
-# from .hyperparameters import *
-# from .loadNet import loadNet
-# from .attachHead import attachHead
+
+# https://stackoverflow.com/questions/1057431/how-to-load-all-modules-in-a-folder
 
 from os.path import dirname, basename, isfile, join
 import glob
