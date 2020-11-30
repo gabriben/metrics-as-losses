@@ -24,5 +24,5 @@ def sigmoidF1(y, y_hat):
 
     sigmoid_f1 = 2*tp / (2*tp + fn + fp + 1e-16)
     cost = 1 - sigmoid_f1 # reduce 1 - soft-f1 in order to increase soft-f1
-    macro_cost = tf.reduce_mean(cost) # average on all labels
+    macroCost = tf.reduce_mean(cost) # average on all labels
     return macroCost
