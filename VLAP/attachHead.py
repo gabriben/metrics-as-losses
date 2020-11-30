@@ -1,5 +1,6 @@
 import tensorflow as tf
 from tensorflow.keras import layers
+from .hyperparameters import *
 
 def attachHead(pretrainedNet, lastActivation):
     model = tf.keras.Sequential([
