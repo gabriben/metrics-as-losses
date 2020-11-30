@@ -1,7 +1,7 @@
 import tensorflow as tf
 from .parseFunction import parseFunction
 
-def createDataset(filenames, labels, BATCH_SIZE, SHUFFLE_BUFFER_SIZE, is_training=True):
+def createDataset(filenames, labels, is_training=True):
     """Load and parse dataset.
     Args:
         filenames: list of image paths
