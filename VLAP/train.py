@@ -5,6 +5,7 @@ import mlflow.tensorflow
 from time import time
 from .attachHead import attachHead
 from .printTime import printTime
+from .hyperparameters import *
 
 def train(pretrainedNet, XYTrain, X_val, y_val_bin, nLabels):
     model = attachHead(pretrainedNet, nLabels)
