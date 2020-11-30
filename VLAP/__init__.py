@@ -22,6 +22,7 @@ from os.path import dirname, basename, isfile, join
 import glob
 modules = glob.glob(join(dirname(__file__), "*.py"))
 from importlib import import_module
+invalidate_caches()
 for f in modules:
     import_module("."+  basename(f)[:-3], "VLAP") #import archive.f 
     globals()[basename(f)[:-3]]=getattr(globals()[basename(f)[:-3]],basename(f)[:-3]) #assign the function f.f to
