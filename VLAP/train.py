@@ -9,6 +9,7 @@ from .hyperparameters import *
 from .macroSoftF1 import macroSoftF1
 from .sigmoidF1 import sigmoidF1
 from .macroF1 import macroF1
+from .createDataset import createDataset
 
 def train(pretrainedNet, XYTrain, X_val, y_val_bin, nLabels):
     model = attachHead(pretrainedNet, nLabels)
@@ -23,7 +24,7 @@ def train(pretrainedNet, XYTrain, X_val, y_val_bin, nLabels):
     start = time()
     history = model.fit(XYTrain,
                         epochs=EPOCHS,
-                        validation_data=create_dataset(X_val, y_val_bin))
+                        validation_data=createDataset(X_val, y_val_bin))
     print('\nTraining took {}'.format(print_time(time()-start)))
 
     return model
