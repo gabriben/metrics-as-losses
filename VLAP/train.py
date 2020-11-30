@@ -15,7 +15,7 @@ def train(pretrainedNet, XYTrain, X_val, y_val_bin, nLabels):
 
     model.compile(
       optimizer=tf.keras.optimizers.Adam(learning_rate=LR),
-      loss= getattr(LOSS_FUNCTION, LOSS_FUNCTION),
+        loss= globals()[LOSS_FUNCTION], #getattr(LOSS_FUNCTION, LOSS_FUNCTION),
       metrics=[getattr(METRIC, METRIC)])
 
     mlflow.tensorflow.autolog()
