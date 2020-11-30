@@ -14,7 +14,7 @@ files=[splitext(f)[0] for f in glob(join(dirname(__file__), '*.py'))
        if f != basename(__file__)]
 from importlib import import_module
 for f in files:
-    import_module("."+f) #import archive.f ,"VLAP"
+    import_module("."+f,"VLAP") #import archive.f 
     globals()[f]=getattr(globals[f],f) #assign the function f.f to variable f 
 
 
