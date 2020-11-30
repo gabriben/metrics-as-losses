@@ -11,6 +11,7 @@ setup(name='VLAP',
       install_requires=[
           'pandas',
           'sklearn',
-          'tensorflow'
+          'tensorflow',
+          'tensorflow_hub'
       ],
       zip_safe=False)
