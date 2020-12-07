@@ -27,7 +27,7 @@ def split(X, y, s, r):
         y_splitted.append(y[(last + 1):p])
         last = p
 
-    return([X_splitted, y_splitted])
+    return(X_splitted.append(y_splitted))
 
 # example
 # X = pd.DataFrame({'col1' : np.arange(103), 'col2':np.arange(103)})
