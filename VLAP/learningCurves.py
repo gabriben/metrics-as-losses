@@ -36,7 +36,7 @@ def learningCurves(history):
     epochs = len(loss)
 
     style.use("bmh")
-    plt.figure(figsize=(8, 8))
+    p = plt.figure(figsize=(8, 8))
 
     plt.subplot(2, 1, 1)
     plt.plot(range(1, epochs+1), loss, label='Training Loss')
@@ -54,5 +54,6 @@ def learningCurves(history):
     plt.xlabel('epoch')
 
     plt.show()
-    
-    return plt
+
+    plt.savefig(plotsPath + 'lCurve.png')
+    mlflow.log_artifacts(plotsPath, "evaluation-plots")
