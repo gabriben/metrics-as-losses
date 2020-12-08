@@ -17,6 +17,7 @@
 
 import matplotlib.pyplot as plt
 import matplotlib.style as style
+from .hyperparameters import *
 
 def learningCurves(history):
     """Plot the learning curves of loss and macro f1 score 
@@ -29,8 +30,8 @@ def learningCurves(history):
     loss = history.history['loss']
     val_loss = history.history['val_loss']
 
-    macro_f1 = history.history['macro_f1']
-    val_macro_f1 = history.history['val_macro_f1']
+    metric = history.history[METRIC]
+    val_metric = history.history['val_' + METRIC]
     
     epochs = len(loss)
 
@@ -45,11 +46,11 @@ def learningCurves(history):
     plt.title('Training and Validation Loss')
 
     plt.subplot(2, 1, 2)
-    plt.plot(range(1, epochs+1), macro_f1, label='Training Macro F1-score')
-    plt.plot(range(1, epochs+1), val_macro_f1, label='Validation Macro F1-score')
+    plt.plot(range(1, epochs+1), metric, label='Training' + METRIC + ' - score')
+    plt.plot(range(1, epochs+1), val_metric, label='Validation' + METRIC + ' - score')
     plt.legend(loc='lower right')
-    plt.ylabel('Macro F1-score')
-    plt.title('Training and Validation Macro F1-score')
+    plt.ylabel(METRIC + ' - score')
+    plt.title('Training and Validation' + METRIC + ' - score')
     plt.xlabel('epoch')
 
     plt.show()

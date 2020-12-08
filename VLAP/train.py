@@ -27,5 +27,5 @@ def train(pretrainedNet, XYTrain, X_val, y_val_bin, nLabels):
                         validation_data=createDataset(X_val, y_val_bin))
     print('\nTraining took {}'.format(printTime(time()-start)))
 
-    return model, history
+    return [model, history]
 
