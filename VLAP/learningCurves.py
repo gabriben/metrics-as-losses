@@ -46,11 +46,11 @@ def learningCurves(history):
     plt.title('Training and Validation Loss')
 
     plt.subplot(2, 1, 2)
-    plt.plot(range(1, epochs+1), metric, label='Training' + METRIC + ' - score')
-    plt.plot(range(1, epochs+1), val_metric, label='Validation' + METRIC + ' - score')
+    plt.plot(range(1, epochs+1), metric, label='Training ' + METRIC + ' - score')
+    plt.plot(range(1, epochs+1), val_metric, label='Validation ' + METRIC + ' - score')
     plt.legend(loc='lower right')
     plt.ylabel(METRIC + ' - score')
-    plt.title('Training and Validation' + METRIC + ' - score')
+    plt.title('Training and Validation ' + METRIC + ' - score')
     plt.xlabel('epoch')
 
     plt.show()
