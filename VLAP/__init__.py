@@ -12,7 +12,7 @@ from .macroF1 import macroF1
 from .train import train
 from .printTime import printTime
 from .split import split
-
+from .learningCurves import learningCurves
 
 # https://stackoverflow.com/questions/1057431/how-to-load-all-modules-in-a-folder
 

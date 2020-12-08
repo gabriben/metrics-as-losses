@@ -25,6 +25,7 @@ def train(pretrainedNet, XYTrain, X_val, y_val_bin, nLabels):
     history = model.fit(XYTrain,
                         epochs=EPOCHS,
                         validation_data=createDataset(X_val, y_val_bin))
-    print('\nTraining took {}'.format(print_time(time()-start)))
+    print('\nTraining took {}'.format(printTime(time()-start)))
 
     return model
+
