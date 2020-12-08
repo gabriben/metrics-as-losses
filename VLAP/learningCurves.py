@@ -18,6 +18,7 @@
 import matplotlib.pyplot as plt
 import matplotlib.style as style
 from .hyperparameters import *
+import mlflow
 
 def learningCurves(history, plotsPath):
     """Plot the learning curves of loss and macro f1 score 
