@@ -9,6 +9,7 @@ from .hyperparameters import *
 from .macroSoftF1 import macroSoftF1
 from .sigmoidF1 import sigmoidF1
 from .macroF1 import macroF1
+from .focalLoss import focalLoss
 from .createDataset import createDataset
 
 def train(pretrainedNet, XYTrain, X_val, y_val_bin, nLabels):
