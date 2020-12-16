@@ -13,6 +13,7 @@ setup(name='VLAP',
           'sklearn',
           'tensorflow',
           'tensorflow_hub',
+          'tensorflow_addons',
           'mlflow',
           'numpy'
       ],
