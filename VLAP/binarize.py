@@ -1,6 +1,8 @@
+# I should do this on all Ys
+
 from sklearn.preprocessing import MultiLabelBinarizer
 
-def binarize(y_train, y_val):
+def binarize(y_train, y_val, y_test):
     
     # Fit the multi-label binarizer on the training set
     print("Labels:")
@@ -15,5 +17,7 @@ def binarize(y_train, y_val):
     # transform the targets of the training and test sets
     y_train_bin = mlb.transform(y_train)
     y_val_bin = mlb.transform(y_val)
+    y_test_bin = mlb.transform(y_test)
 
-    return(y_train_bin, y_val_bin, N_LABELS)
+    return(y_train_bin, y_val_bin, y_test_bin, N_LABELS)
+
