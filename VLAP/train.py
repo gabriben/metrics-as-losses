@@ -13,6 +13,9 @@ from .createDataset import createDataset
 
 def train(pretrainedNet, XYTrain, X_val, y_val_bin, nLabels):
     model = attachHead(pretrainedNet, nLabels)
+
+    tf.random.set_seed(12)
+    tf.set_random_seed(12)
     
     model.compile(
       optimizer=tf.keras.optimizers.Adam(learning_rate=LR),
