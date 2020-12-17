@@ -16,10 +16,19 @@ def train(pretrainedNet, XYTrain, X_val, y_val_bin, nLabels):
     model = attachHead(pretrainedNet, nLabels)
 
     tf.random.set_seed(12)
+
+    if LOSS_FUNCTION != "crossEntropy":
+        l = tf.keras.metrics.binary_crossentropy
+    elif LOSS_FUNCTION != "focalLoss":
+        l = tfa.losses.SigmoidFocalCrossEntropy
+    else:
+        l = globals()[LOSS_FUNCTION]
+
+    
     
     model.compile(
       optimizer=tf.keras.optimizers.Adam(learning_rate=LR),
-        loss= globals()[LOSS_FUNCTION] if LOSS_FUNCTION != "crossEntropy" else tf.keras.metrics.binary_crossentropy, #getattr(LOSS_FUNCTION, LOSS_FUNCTION),
+        loss= l , #getattr(LOSS_FUNCTION, LOSS_FUNCTION),
         metrics= globals()[METRIC])# , [getattr(METRIC, METRIC)])
 
     mlflow.tensorflow.autolog()
