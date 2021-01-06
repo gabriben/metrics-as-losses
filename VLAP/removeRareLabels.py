@@ -1,11 +1,10 @@
 # adapted from https://github.com/ashrefm/multi-label-soft-f1.git
 import pandas as pd
 
-def removeRareLabels(movies, irrelevanceThreshold):
+def removeRareLabels(x, irrelevanceThreshold):
 
   # Get label frequencies in descending order
-  label_freq = (movies['Genre']
-                .apply(lambda s: str(s).split('|'))
+  label_freq = (x.apply(lambda s: str(s).split('|'))
                 .explode().value_counts().sort_values(ascending=False))
 
   # Create a list of rare labels
@@ -13,7 +12,6 @@ def removeRareLabels(movies, irrelevanceThreshold):
   print("We will be ignoring these rare labels:", rare)
 
   # Transform Genre into a list of labels and remove the rare ones
-  movies['Genre'] = (movies['Genre']
-                     .apply(lambda s: [l for l in str(s).split('|') if l not in rare]))
+  x = (x.apply(lambda s: [l for l in str(s).split('|') if l not in rare]))
 
   return(movies)
