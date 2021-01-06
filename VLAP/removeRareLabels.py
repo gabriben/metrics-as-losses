@@ -14,4 +14,4 @@ def removeRareLabels(x, sep, irrelevanceThreshold):
   # Transform Genre into a list of labels and remove the rare ones
   x = (x.apply(lambda s: [l for l in str(s).split(sep) if l not in rare])) # '|'
 
-  return(movies)
+  return(x)
