@@ -2,7 +2,7 @@ import tensorflow as tf
 from .parseFunction import parseFunction
 from .hyperparameters import *
 
-def createDataset(filenames, labels, is_training=True):
+def createDataset(filenames, labels, is_training=True, is_image = True):
     """Load and parse dataset.
     Args:
         filenames: list of image paths
@@ -12,8 +12,10 @@ def createDataset(filenames, labels, is_training=True):
     
     # Create a first dataset of file paths and labels
     dataset = tf.data.Dataset.from_tensor_slices((filenames, labels))
-    # Parse and preprocess observations in parallel
-    dataset = dataset.map(parseFunction, num_parallel_calls=tf.data.experimental.AUTOTUNE)
+
+    if is_image == True:
+        # Parse and preprocess observations in parallel
+        dataset = dataset.map(parseFunction, num_parallel_calls=tf.data.experimental.AUTOTUNE)
     
     if is_training == True:
         # This is a small dataset, only load it once, and keep it in memory.
