@@ -1,6 +1,7 @@
 from .hyperparameters import *
 from sklearn.metrics import f1_score, precision_recall_fscore_support
 import pandas as pd
+import scipy
 
 def computeMetrics(preds):
 
@@ -19,3 +20,8 @@ def computeMetrics(preds):
 
     testResults.to_csv("testResults.csv")
     mlflow.log_artifact("testResults.csv")
+
+    print("preds")
+    print(scipy.stats.describe(preds.ravel()))
+    print("test results")
+    print(testResults)
