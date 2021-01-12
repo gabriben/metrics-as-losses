@@ -14,6 +14,7 @@ from .train import train
 from .printTime import printTime
 from .split import split
 from .learningCurves import learningCurves
+from .computeMetrics import computeMetrics
 
 # https://stackoverflow.com/questions/1057431/how-to-load-all-modules-in-a-folder
 
