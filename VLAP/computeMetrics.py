@@ -3,7 +3,7 @@ from sklearn.metrics import f1_score, precision_recall_fscore_support
 import pandas as pd
 import scipy
 
-def computeMetrics(preds):
+def computeMetrics(preds, y_test_bin):
 
 # preds = model.predict(test_ds).to_tuple()[0]
 
