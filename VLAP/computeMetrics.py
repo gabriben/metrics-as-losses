@@ -2,6 +2,7 @@ from .hyperparameters import *
 from sklearn.metrics import f1_score, precision_recall_fscore_support
 import pandas as pd
 import scipy
+import mlflow
 
 def computeMetrics(preds, y_test_bin):
 
