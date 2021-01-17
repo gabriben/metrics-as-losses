@@ -37,7 +37,7 @@ def train(pretrainedNet, trainDS, valDS, nLabels):
     start = time()
     history = model.fit(trainDS,
                         epochs=EPOCHS,
-                        validation_data=createDataset(valDS))
+                        validation_data=valDS) # createDataset(
     print('\nTraining took {}'.format(printTime(time()-start)))
 
     return model, history
