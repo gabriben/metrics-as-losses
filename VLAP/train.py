@@ -34,11 +34,11 @@ def train(pretrainedNet, trainDS, valDS, nLabels):
 
     mlflow.tensorflow.autolog()
 
-    start = time()
-    history = model.fit(trainDS,
-                        epochs=EPOCHS,
-                        validation_data=valDS) # createDataset(
-    print('\nTraining took {}'.format(printTime(time()-start)))
+    # start = time()
+    # history = model.fit(trainDS,
+    #                     epochs=EPOCHS,
+    #                     validation_data=valDS) # createDataset(
+    # print('\nTraining took {}'.format(printTime(time()-start)))
 
-    return model, history
+    return model #, history
 
