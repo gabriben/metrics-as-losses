@@ -18,6 +18,11 @@ METRIC = "macroF1"
 MACRO_F1_THRESH = 0.5
 LAST_ACTIVATION = "sigmoid"
 
+
+# Huggingface
+
+SUBSAMPLE = 2020
+
 # TENCENT (original descriptions to the right)
 
 # TENCENT_MASK_THRESH : 0.7 # "mask thres for balance pos neg"
