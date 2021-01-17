@@ -12,8 +12,16 @@ def macroSoftF1(y, y_hat):
     Returns:
         cost (scalar Tensor): value of the cost function for the batch
     """
-    y = tf.cast(y, tf.float32)
-    y_hat = tf.cast(y_hat, tf.float32)
+
+    tf.print(y)
+    tf.print(y_hat)
+    
+    y = tf.nn.softmax(tf.cast(y, tf.float32))
+    y_hat = tf.nn.softmax(tf.cast(y_hat, tf.float32))
+
+    tf.print(y)
+    tf.print(y_hat)
+    
     tp = tf.reduce_sum(y_hat * y, axis=0)
     fp = tf.reduce_sum(y_hat * (1 - y), axis=0)
     fn = tf.reduce_sum((1 - y_hat) * y, axis=0)
