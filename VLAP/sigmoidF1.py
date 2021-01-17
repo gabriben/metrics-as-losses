@@ -2,7 +2,7 @@ import tensorflow as tf
 from .hyperparameters import *
 
 # @tf.function
-def sigmoidF1(y, y_hat):
+def sigmoidF1(y, y_hat, from_logits = True):
     """Compute the macro soft F1-score as a cost (average 1 - soft-F1 across all labels).
     Use probability values instead of binary predictions.
     
@@ -15,6 +15,11 @@ def sigmoidF1(y, y_hat):
     """
     y = tf.cast(y, tf.float32)
     y_hat = tf.cast(y_hat, tf.float32)
+
+    if from_logits == True:
+        y = tf.nn.softmax(y)
+        y_hat = tf.nn.softmax(y_hat)    
+    
     b = tf.constant(S, tf.float32)
     c = tf.constant(E, tf.float32)
     sig = 1 / (1 + tf.math.exp(b * (y_hat + c)))

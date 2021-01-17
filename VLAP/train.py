@@ -12,8 +12,8 @@ from .macroF1 import macroF1
 from .focalLoss import focalLoss
 from .createDataset import createDataset
 
-def train(pretrainedNet, XYTrain, X_val, y_val_bin, nLabels):
-    model = attachHead(pretrainedNet, nLabels)
+def train(pretrainedNet, trainDS, valDS, nLabels):
+    # model = attachHead(pretrainedNet, nLabels)
 
     tf.random.set_seed(12)
 
@@ -34,9 +34,9 @@ def train(pretrainedNet, XYTrain, X_val, y_val_bin, nLabels):
     mlflow.tensorflow.autolog()
 
     start = time()
-    history = model.fit(XYTrain,
+    history = model.fit(trainDS,
                         epochs=EPOCHS,
-                        validation_data=createDataset(X_val, y_val_bin))
+                        validation_data=createDataset(valDS))
     print('\nTraining took {}'.format(printTime(time()-start)))
 
     return model, history
