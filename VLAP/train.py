@@ -30,7 +30,7 @@ def train(pretrainedNet, trainDS, valDS, nLabels):
     model.compile(
       optimizer=tf.keras.optimizers.Adam(learning_rate=LR),
         loss= l , #getattr(LOSS_FUNCTION, LOSS_FUNCTION),
-        metrics= globals()[METRIC])# , [getattr(METRIC, METRIC)])
+        metrics= macroF1) #globals()[METRIC])# , [getattr(METRIC, METRIC)])
 
     mlflow.tensorflow.autolog()
 
