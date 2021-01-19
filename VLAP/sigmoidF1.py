@@ -16,9 +16,9 @@ def sigmoidF1(y, y_hat, from_logits = True):
     y = tf.cast(y, tf.float32)
     y_hat = tf.cast(y_hat, tf.float32)
 
-    if from_logits == True:
-        y = tf.nn.softmax(y)
-        y_hat = tf.nn.softmax(y_hat)
+    # if from_logits == True:
+    #     y = tf.nn.softmax(y)
+    #     y_hat = tf.nn.softmax(y_hat)
     
     b = tf.constant(S, tf.float32)
     c = tf.constant(E, tf.float32)
