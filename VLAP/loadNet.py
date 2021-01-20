@@ -12,7 +12,7 @@ def loadNet(modelURL, numClasses, unfreezePretrain = False, fromHuggingFace = Fa
     else:
         # config = AutoConfig.from_pretrained(modelURL, config.num_labels = numClasses, config.seq_classif_dropout = 0) #distil
         # tokenizer = AutoTokenizer.from_pretrained('distilbert-base-uncased')
-        config = DistilBertConfig(num_labels = numClasses, seq_classif_dropout = 0)
+        config = DistilBertConfig(num_labels = numClasses, seq_classif_dropout = 1)
 
         print(f'Number of Classes: {numClasses}')
         # config.num_labels = numClasses

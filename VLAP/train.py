@@ -19,7 +19,7 @@ def train(pretrainedNet, trainDS, valDS, nLabels):
     tf.random.set_seed(12)
 
     if LOSS_FUNCTION == "crossEntropy":
-        l = tf.keras.metrics.binary_crossentropy
+        l = tf.keras.losses.binary_crossentropy
     elif LOSS_FUNCTION == "focalLoss":
         l = tfa.losses.SigmoidFocalCrossEntropy
     else:
