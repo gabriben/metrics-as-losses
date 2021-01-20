@@ -15,6 +15,7 @@ def loadNet(modelURL, numClasses, unfreezePretrain = False, fromHuggingFace = Fa
 
         print(f'Number of Classes: {numClasses}')
         config.num_labels = numClasses
+        print(config)
         pretrainedNet = TFDistilBertForSequenceClassification.from_pretrained('distilbert-base-uncased', config = config) # TFBertForSequenceClassification
         pretrainedNet.layers[0].trainable = unfreezePretrain
         
