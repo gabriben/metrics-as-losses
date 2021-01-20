@@ -1,5 +1,5 @@
 import tensorflow_hub as hub
-from transformers import TFDistilBertForSequenceClassification, AutoConfig
+from transformers import TFDistilBertForSequenceClassification, AutoConfig, DistilBertConfig
 from .hyperparameters import *
 
 def loadNet(modelURL, numClasses, unfreezePretrain = False, fromHuggingFace = False):
@@ -10,14 +10,15 @@ def loadNet(modelURL, numClasses, unfreezePretrain = False, fromHuggingFace = Fa
         pretrainedNet.trainable = unfreezePretrain # freezing the pretrained network
 
     else:
-        config = AutoConfig.from_pretrained(modelURL) #distil
+        # config = AutoConfig.from_pretrained(modelURL, config.num_labels = numClasses, config.seq_classif_dropout = 0) #distil
         # tokenizer = AutoTokenizer.from_pretrained('distilbert-base-uncased')
+        config = DistilBertConfig(num_labels = numClasses, seq_classif_dropout = 0)
 
         print(f'Number of Classes: {numClasses}')
-        config.num_labels = numClasses
-        config.seq_classif_dropout = 0
+        # config.num_labels = numClasses
+        # config.seq_classif_dropout = 0
         print(config)
-        pretrainedNet = TFDistilBertForSequenceClassification.from_pretrained('distilbert-base-uncased', config = config) # TFBertForSequenceClassification
+        pretrainedNet = TFDistilBertForSequenceClassification.from_pretrained(modelURL, config = config) # TFBertForSequenceClassification
         pretrainedNet.layers[0].trainable = unfreezePretrain
         
     return pretrainedNet
