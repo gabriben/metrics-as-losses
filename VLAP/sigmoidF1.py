@@ -15,16 +15,15 @@ def sigmoidF1(y, y_hat, from_logits = True):
     """
     y = tf.cast(y, tf.float32)
     y_hat = tf.cast(y_hat, tf.float32)
-
-    tf.print(y_hat)
     
     if from_logits == True:
         # y = tf.nn.softmax(y)
         #y_hat = tf.nn.softmax(y_hat)
-        y_hat = tf.math.exp(y_hat) / (tf.math.exp(y_hat) + 1)
+        y_hat = tf.math.sigmoid(y_hat)
+        #y_hat = tf.math.exp(y_hat) / (tf.math.exp(y_hat) + 1)
 
     tf.print(y_hat)
-    
+        
     b = tf.constant(S, tf.float32)
     c = tf.constant(E, tf.float32)
     sig = 1 / (1 + tf.math.exp(b * (y_hat + c)))
