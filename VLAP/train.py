@@ -11,6 +11,7 @@ from .sigmoidF1 import sigmoidF1
 from .macroF1 import macroF1
 from .focalLoss import focalLoss
 from .createDataset import createDataset
+import tensorflow_addons as tfa
 
 def train(pretrainedNet, trainDS, valDS, nLabels):
     # model = attachHead(pretrainedNet, nLabels)

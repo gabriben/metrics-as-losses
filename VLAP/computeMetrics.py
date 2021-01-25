@@ -1,5 +1,6 @@
 from .hyperparameters import *
-from sklearn.metrics import f1_score, precision_recall_fscore_support
+from sklearn.metrics import f1_score, precision_recall_fscore_support, hamming_loss
+from .hammingScore import hammingScore
 import pandas as pd
 import scipy
 import mlflow
@@ -9,7 +10,7 @@ def computeMetrics(preds, y_test_bin):
 # preds = model.predict(test_ds).to_tuple()[0]
 
     thresholds = [i/10 for i in range(1,10)]
-    testResults = pd.DataFrame(columns = ["macroF1", "microF1", "weightedF1", "precision", "recall"])
+    testResults = pd.DataFrame(columns = ["macroF1", "microF1", "weightedF1", "precision", "recall", "hammingLoss", "hammingScore"])
 
     for t in thresholds:
         testResults.loc[str(t), "macroF1"] = f1_score(y_test_bin, preds > t, average = "macro")
@@ -17,7 +18,10 @@ def computeMetrics(preds, y_test_bin):
         testResults.loc[str(t),"weightedF1"] = f1_score(y_test_bin, preds > t, average = "weighted")
         precision, recall, fscore, support = precision_recall_fscore_support(y_test_bin, preds > t)
         testResults.loc[str(t),"precision"] = precision.mean()
-        testResults.loc[str(t), "recall"] = precision.mean()
+        testResults.loc[str(t), "recall"] = recall.mean()
+        testResults.loc[str(t), "hammingLoss"] = hamming_loss(y_test_bin, preds > t)
+        testResults.loc[str(t), "hammingScore"] = hammingScore(y_test_bin, preds > t)
+        
 
     testResults.to_csv("testResults.csv")
     mlflow.log_artifact("testResults.csv")
