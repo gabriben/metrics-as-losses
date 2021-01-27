@@ -3,6 +3,8 @@ import pandas as pd
 
 def removeRareLabels(x, sep, irrelevanceThreshold = None, nLabelsThreshold = None):
 
+  # list(set()) top remove duplicates
+  
   # Get label frequencies in descending order
   label_freq = (x.apply(lambda s: list(set(str(s).split(sep)))) # '|'
                 .explode().value_counts().sort_values(ascending=False))
