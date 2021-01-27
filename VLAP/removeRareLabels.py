@@ -4,7 +4,7 @@ import pandas as pd
 def removeRareLabels(x, sep, irrelevanceThreshold = None, nLabelsThreshold = None):
 
   # Get label frequencies in descending order
-  label_freq = (x.apply(lambda s: str(s).split(sep)) # '|'
+  label_freq = (x.apply(lambda s: list(set(str(s).split(sep)))) # '|'
                 .explode().value_counts().sort_values(ascending=False))
 
   if irrelevanceThreshold is not None:
@@ -18,6 +18,6 @@ def removeRareLabels(x, sep, irrelevanceThreshold = None, nLabelsThreshold = Non
 
       
   # Transform Genre into a list of labels and remove the rare ones
-  x = (x.apply(lambda s: [l for l in str(s).split(sep) if l not in rare])) # '|'
+  x = (x.apply(lambda s: [l for l in list(set(str(s).split(sep))) if l not in rare])) # '|'
 
   return(x)
