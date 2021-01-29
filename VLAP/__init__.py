@@ -16,7 +16,7 @@ from .split import split
 from .learningCurves import learningCurves
 from .computeMetrics import computeMetrics
 from .hammingScore import hammingScore
-from .tencentLoss import rencentLoss
+from .tencentLoss import tencentLoss
 
 # https://stackoverflow.com/questions/1057431/how-to-load-all-modules-in-a-folder
 
