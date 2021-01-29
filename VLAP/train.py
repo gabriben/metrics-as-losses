@@ -10,7 +10,7 @@ from .macroSoftF1 import macroSoftF1
 from .sigmoidF1 import sigmoidF1
 from .macroF1 import macroF1
 from .focalLoss import focalLoss
-from .tencentLoss import rencentLoss
+from .tencentLoss import tencentLoss
 
 from .createDataset import createDataset
 import tensorflow_addons as tfa
