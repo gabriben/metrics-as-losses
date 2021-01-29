@@ -49,14 +49,14 @@ def tencentLoss(labels, logits):
                  tf.math.multiply(neg_count, pos_curr_count))
   # tf.summary.histogram('pos_count', pos_count)
   # tf.summary.histogram('neg_count', neg_count)
-  pos_loss_coef = -1 * (tf.log((0.01 + pos_count)/10)/tf.log(10.0))
+  pos_loss_coef = -1 * (tf.math.log((0.01 + pos_count)/10)/tf.math.log(10.0))
   pos_loss_coef = tf.where(
                     tf.math.greater(pos_loss_coef, tf.fill(tf.shape(pos_loss_coef), 0.01)),
                     pos_loss_coef,
                     tf.fill(tf.shape(pos_loss_coef), 0.01))
   pos_loss_coef = tf.math.multiply(pos_loss_coef, pos_curr_count)
   tf.summary.histogram('pos_loss_coef', pos_loss_coef)
-  neg_loss_coef = -1 * (tf.log((8 + neg_count)/10)/tf.log(10.0))
+  neg_loss_coef = -1 * (tf.math.log((8 + neg_count)/10)/tf.math.log(10.0))
   neg_loss_coef = tf.where(
                    tf.math.greater(neg_loss_coef, tf.fill(tf.shape(neg_loss_coef), 0.01)),
                    neg_loss_coef,
