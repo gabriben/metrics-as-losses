@@ -5,7 +5,7 @@ import tensorflow as tf
 # TENCENT (original descriptions to the right)
 
 TENCENT_MASK_THRESH = 0.7 # "mask thres for balance pos neg"
-TENCENT_CLASS_NUM = 48 # "distinct class number"
+# TENCENT_CLASS_NUM = 48 # "distinct class number"
 TENCENT_RANDOM_SEED = 1234 #  "Random sedd for neigitive class selected"
 TENCENT_WEIGHT_DECAY = 0.0001 # "Tainable Weight l2 loss factor."
 TENCENT_NEG_SELECT = 0.3 # "how many class within only negtive samples in a batch select to learn"
@@ -85,5 +85,5 @@ def tencentLoss(labels, logits):
   # Add weight decay to the loss. We exclude the batch norm variables because
   # doing so leads to a small improvement in accuracy.
   loss = cross_entropy_cost + TENCENT_WEIGHT_DECAY * tf.math.add_n(
-    [tf.nn.l2_loss(v) for v in tf.compat.v1.trainable_variables() if 'batch_normalization' not in v.name])
+    [tf.nn.l2_loss(v) for v in tf.compat.v1.trainable_variables()]) # if 'batch_normalization' not in v.name
   return loss
