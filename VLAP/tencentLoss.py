@@ -16,6 +16,7 @@ def tencentLoss(labels, logits):
 # Calculate loss, which includes softmax cross entropy and L2 regularization.
   # a. get loss coeficiente
   # labels = tf.transpose(labels)
+  TENCENT_CLASS_NUM = tf.shape(logits)[1]
   pos_mask = tf.reduce_sum(
                tf.cast(
                  tf.math.greater_equal(
@@ -84,5 +85,5 @@ def tencentLoss(labels, logits):
   # Add weight decay to the loss. We exclude the batch norm variables because
   # doing so leads to a small improvement in accuracy.
   loss = cross_entropy_cost + TENCENT_WEIGHT_DECAY * tf.math.add_n(
-    [tf.nn.l2_loss(v) for v in tf.trainable_variables() if 'batch_normalization' not in v.name])
+    [tf.nn.l2_loss(v) for v in tf.compat.v1.trainable_variables() if 'batch_normalization' not in v.name])
   return loss
