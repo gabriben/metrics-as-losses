@@ -21,7 +21,7 @@ def tencentLoss(labels, logits):
                    labels, tf.fill(tf.shape(labels), TENCENT_MASK_THRESH)), 
                    tf.float32), 
              0)
-  pos_curr_count = tf.cast(tf.math.greater(   pos_mask, 0), tf.float32)
+  pos_curr_count = tf.cast(tf.math.greater(pos_mask, 0), tf.float32)
   neg_curr_count = tf.cast(tf.less_equal(pos_mask, 0), tf.float32)
   pos_count = tf.Variable(tf.zeros(shape=[TENCENT_CLASS_NUM,]),  trainable=False)
   neg_count = tf.Variable(tf.zeros(shape=[TENCENT_CLASS_NUM,]),  trainable=False)
@@ -36,6 +36,9 @@ def tencentLoss(labels, logits):
   tf.summary.histogram('pos_curr_count', pos_curr_count)
   tf.summary.histogram('neg_curr_count', neg_curr_count)
   tf.summary.histogram('neg_select', neg_select)
+  tf.print(pos_count)
+  tf.print(pos_curr_count)  
+  tf.print(neg_curr_count)  
   with tf.control_dependencies([pos_curr_count, neg_curr_count, neg_select]):
     pos_count = tf.compat.v1.assign_sub( # modif ici: + v1
                    tf.compat.v1.assign_add(pos_count, pos_curr_count),
