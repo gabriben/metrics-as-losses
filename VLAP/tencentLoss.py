@@ -38,9 +38,9 @@ def tencentLoss(labels, logits):
   # tf.summary.histogram('pos_curr_count', pos_curr_count)
   # tf.summary.histogram('neg_curr_count', neg_curr_count)
   # tf.summary.histogram('neg_select', neg_select)
-  tf.print(pos_count)
-  tf.print(pos_curr_count)  
-  tf.print(neg_curr_count)  
+  # tf.print(pos_count)
+  # tf.print(pos_curr_count)  
+  # tf.print(neg_curr_count)  
   # with tf.control_dependencies([pos_curr_count, neg_curr_count, neg_select]):
   pos_count = tf.compat.v1.assign_sub( # modif ici: + v1
                  tf.compat.v1.assign_add(pos_count, pos_curr_count),
@@ -84,6 +84,6 @@ def tencentLoss(labels, logits):
 
   # Add weight decay to the loss. We exclude the batch norm variables because
   # doing so leads to a small improvement in accuracy.
-  loss = cross_entropy_cost + TENCENT_WEIGHT_DECAY * tf.math.add_n(
-    [tf.nn.l2_loss(v) for v in tf.compat.v1.trainable_variables()]) # if 'batch_normalization' not in v.name
+  loss = cross_entropy_cost # + TENCENT_WEIGHT_DECAY * tf.math.add_n(
+    # [tf.nn.l2_loss(v) for v in tf.compat.v1.trainable_variables()]) # if 'batch_normalization' not in v.name
   return loss
