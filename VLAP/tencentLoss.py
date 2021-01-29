@@ -37,10 +37,10 @@ def tencentLoss(labels, logits):
   tf.summary.histogram('neg_curr_count', neg_curr_count)
   tf.summary.histogram('neg_select', neg_select)
   with tf.control_dependencies([pos_curr_count, neg_curr_count, neg_select]):
-    pos_count = tf.assign_sub(
+    pos_count = tf.v1.assign_sub( # modif ici: + v1
                    tf.assign_add(pos_count, pos_curr_count),
                    tf.multiply(pos_count, neg_curr_count))
-    neg_count = tf.assign_sub(
+    neg_count = tf.v1.assign_sub(
                    tf.assign_add(neg_count, tf.multiply(neg_curr_count, neg_select)),
                    tf.multiply(neg_count, pos_curr_count))
     tf.summary.histogram('pos_count', pos_count)
