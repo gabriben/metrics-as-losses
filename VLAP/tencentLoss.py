@@ -11,7 +11,7 @@ TENCENT_WEIGHT_DECAY = 0.0001 # "Tainable Weight l2 loss factor."
 TENCENT_NEG_SELECT = 0.3 # "how many class within only negtive samples in a batch select to learn"
 
 
-@tf.function
+# @tf.function
 def tencentLoss(labels, logits):
 # Calculate loss, which includes softmax cross entropy and L2 regularization.
   # a. get loss coeficiente
