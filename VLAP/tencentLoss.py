@@ -73,7 +73,7 @@ def tencentLoss(labels, logits):
 
   # cal loss
   cross_entropy = tf.nn.weighted_cross_entropy_with_logits(
-       logits=logits, targets=labels, pos_weight=12, name='sigmod_cross_entropy')
+       logits=logits, labels=labels, pos_weight=12, name='sigmod_cross_entropy')
   tf.summary.histogram('sigmod_ce', cross_entropy)
   cross_entropy_cost = tf.reduce_sum(tf.reduce_mean(cross_entropy * non_neg_mask, axis=0) * loss_coef)
 
