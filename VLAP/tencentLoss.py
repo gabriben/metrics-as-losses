@@ -5,7 +5,7 @@ import tensorflow as tf
 # TENCENT (original descriptions to the right)
 
 TENCENT_MASK_THRESH = 0.7 # "mask thres for balance pos neg"
-# TENCENT_CLASS_NUM = 48 # "distinct class number"
+TENCENT_CLASS_NUM = 48 # "distinct class number"
 TENCENT_RANDOM_SEED = 1234 #  "Random sedd for neigitive class selected"
 TENCENT_WEIGHT_DECAY = 0.0001 # "Tainable Weight l2 loss factor."
 TENCENT_NEG_SELECT = 0.3 # "how many class within only negtive samples in a batch select to learn"
@@ -16,7 +16,7 @@ def tencentLoss(labels, logits):
 # Calculate loss, which includes softmax cross entropy and L2 regularization.
   # a. get loss coeficiente
   # labels = tf.transpose(labels)
-  TENCENT_CLASS_NUM = tf.shape(logits)[1]
+  # TENCENT_CLASS_NUM = tf.shape(logits)[1]
   pos_mask = tf.reduce_sum(
                tf.cast(
                  tf.math.greater_equal(
