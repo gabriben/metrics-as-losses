@@ -39,15 +39,15 @@ def tencentLoss(labels, logits):
   tf.print(pos_count)
   tf.print(pos_curr_count)  
   tf.print(neg_curr_count)  
-  with tf.control_dependencies([pos_curr_count, neg_curr_count, neg_select]):
-    pos_count = tf.compat.v1.assign_sub( # modif ici: + v1
-                   tf.compat.v1.assign_add(pos_count, pos_curr_count),
-                   tf.math.multiply(pos_count, neg_curr_count))
-    neg_count = tf.compat.v1.assign_sub(
-                   tf.compat.v1.assign_add(neg_count, tf.math.multiply(neg_curr_count, neg_select)),
-                   tf.math.multiply(neg_count, pos_curr_count))
-    tf.summary.histogram('pos_count', pos_count)
-    tf.summary.histogram('neg_count', neg_count)
+  # with tf.control_dependencies([pos_curr_count, neg_curr_count, neg_select]):
+  pos_count = tf.compat.v1.assign_sub( # modif ici: + v1
+                 tf.compat.v1.assign_add(pos_count, pos_curr_count),
+                 tf.math.multiply(pos_count, neg_curr_count))
+  neg_count = tf.compat.v1.assign_sub(
+                 tf.compat.v1.assign_add(neg_count, tf.math.multiply(neg_curr_count, neg_select)),
+                 tf.math.multiply(neg_count, pos_curr_count))
+  tf.summary.histogram('pos_count', pos_count)
+  tf.summary.histogram('neg_count', neg_count)
   pos_loss_coef = -1 * (tf.log((0.01 + pos_count)/10)/tf.log(10.0))
   pos_loss_coef = tf.where(
                     tf.math.greater(pos_loss_coef, tf.fill(tf.shape(pos_loss_coef), 0.01)),
