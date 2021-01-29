@@ -27,7 +27,7 @@ def tencentLoss(labels, logits):
   neg_count = tf.Variable(tf.zeros(shape=[TENCENT_CLASS_NUM,]),  trainable=False)
   neg_select = tf.cast(
                  tf.less_equal(
-                    tf.random_uniform(
+                    tf.random.uniform( # random_uniform
                       shape=[TENCENT_CLASS_NUM,], 
                       minval=0, maxval=1,
                       seed = TENCENT_RANDOM_SEED),
