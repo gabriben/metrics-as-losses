@@ -15,6 +15,7 @@ TENCENT_NEG_SELECT = 0.3 # "how many class within only negtive samples in a batc
 def tencentLoss(labels, logits):
 # Calculate loss, which includes softmax cross entropy and L2 regularization.
   # a. get loss coeficiente
+  labels = tf.transpose(labels)
   pos_mask = tf.reduce_sum(
                tf.cast(
                  tf.math.greater_equal(
@@ -33,9 +34,9 @@ def tencentLoss(labels, logits):
                       seed = TENCENT_RANDOM_SEED),
                     TENCENT_NEG_SELECT), 
                  tf.float32)
-  tf.summary.histogram('pos_curr_count', pos_curr_count)
-  tf.summary.histogram('neg_curr_count', neg_curr_count)
-  tf.summary.histogram('neg_select', neg_select)
+  # tf.summary.histogram('pos_curr_count', pos_curr_count)
+  # tf.summary.histogram('neg_curr_count', neg_curr_count)
+  # tf.summary.histogram('neg_select', neg_select)
   tf.print(pos_count)
   tf.print(pos_curr_count)  
   tf.print(neg_curr_count)  
@@ -46,8 +47,8 @@ def tencentLoss(labels, logits):
   neg_count = tf.compat.v1.assign_sub(
                  tf.compat.v1.assign_add(neg_count, tf.math.multiply(neg_curr_count, neg_select)),
                  tf.math.multiply(neg_count, pos_curr_count))
-  tf.summary.histogram('pos_count', pos_count)
-  tf.summary.histogram('neg_count', neg_count)
+  # tf.summary.histogram('pos_count', pos_count)
+  # tf.summary.histogram('neg_count', neg_count)
   pos_loss_coef = -1 * (tf.log((0.01 + pos_count)/10)/tf.log(10.0))
   pos_loss_coef = tf.where(
                     tf.math.greater(pos_loss_coef, tf.fill(tf.shape(pos_loss_coef), 0.01)),
