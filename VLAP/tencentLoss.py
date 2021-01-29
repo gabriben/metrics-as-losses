@@ -17,11 +17,11 @@ def tencentLoss(labels, logits):
   # a. get loss coeficiente
   pos_mask = tf.reduce_sum(
                tf.cast(
-                 tf.greater_equal(
+                 tf.math.greater_equal(
                    labels, tf.fill(tf.shape(labels), TENCENT_MASK_THRESH)), 
                    tf.float32), 
              0)
-  pos_curr_count = tf.cast(tf.greater(   pos_mask, 0), tf.float32)
+  pos_curr_count = tf.cast(tf.math.greater(   pos_mask, 0), tf.float32)
   neg_curr_count = tf.cast(tf.less_equal(pos_mask, 0), tf.float32)
   pos_count = tf.Variable(tf.zeros(shape=[TENCENT_CLASS_NUM,]),  trainable=False)
   neg_count = tf.Variable(tf.zeros(shape=[TENCENT_CLASS_NUM,]),  trainable=False)
@@ -37,29 +37,29 @@ def tencentLoss(labels, logits):
   tf.summary.histogram('neg_curr_count', neg_curr_count)
   tf.summary.histogram('neg_select', neg_select)
   with tf.control_dependencies([pos_curr_count, neg_curr_count, neg_select]):
-    pos_count = tf.v1.assign_sub( # modif ici: + v1
-                   tf.assign_add(pos_count, pos_curr_count),
-                   tf.multiply(pos_count, neg_curr_count))
-    neg_count = tf.v1.assign_sub(
-                   tf.assign_add(neg_count, tf.multiply(neg_curr_count, neg_select)),
-                   tf.multiply(neg_count, pos_curr_count))
+    pos_count = tf.compat.v1.assign_sub( # modif ici: + v1
+                   tf.compat.v1.assign_add(pos_count, pos_curr_count),
+                   tf.math.multiply(pos_count, neg_curr_count))
+    neg_count = tf.compat.v1.assign_sub(
+                   tf.compat.v1.assign_add(neg_count, tf.math.multiply(neg_curr_count, neg_select)),
+                   tf.math.multiply(neg_count, pos_curr_count))
     tf.summary.histogram('pos_count', pos_count)
     tf.summary.histogram('neg_count', neg_count)
   pos_loss_coef = -1 * (tf.log((0.01 + pos_count)/10)/tf.log(10.0))
   pos_loss_coef = tf.where(
-                    tf.greater(pos_loss_coef, tf.fill(tf.shape(pos_loss_coef), 0.01)),
+                    tf.math.greater(pos_loss_coef, tf.fill(tf.shape(pos_loss_coef), 0.01)),
                     pos_loss_coef,
                     tf.fill(tf.shape(pos_loss_coef), 0.01))
-  pos_loss_coef = tf.multiply(pos_loss_coef, pos_curr_count)
+  pos_loss_coef = tf.math.multiply(pos_loss_coef, pos_curr_count)
   tf.summary.histogram('pos_loss_coef', pos_loss_coef)
   neg_loss_coef = -1 * (tf.log((8 + neg_count)/10)/tf.log(10.0))
   neg_loss_coef = tf.where(
-                   tf.greater(neg_loss_coef, tf.fill(tf.shape(neg_loss_coef), 0.01)),
+                   tf.math.greater(neg_loss_coef, tf.fill(tf.shape(neg_loss_coef), 0.01)),
                    neg_loss_coef,
                    tf.fill(tf.shape(neg_loss_coef), 0.001))
-  neg_loss_coef = tf.multiply(neg_loss_coef, tf.multiply(neg_curr_count, neg_select))
+  neg_loss_coef = tf.math.multiply(neg_loss_coef, tf.math.multiply(neg_curr_count, neg_select))
   tf.summary.histogram('neg_loss_coef', neg_loss_coef)
-  loss_coef = tf.add(pos_loss_coef, neg_loss_coef)
+  loss_coef = tf.math.add(pos_loss_coef, neg_loss_coef)
   tf.summary.histogram('loss_coef', loss_coef)
 
   # b. get non-negative mask
@@ -79,6 +79,6 @@ def tencentLoss(labels, logits):
 
   # Add weight decay to the loss. We exclude the batch norm variables because
   # doing so leads to a small improvement in accuracy.
-  loss = cross_entropy_cost + TENCENT_WEIGHT_DECAY * tf.add_n(
+  loss = cross_entropy_cost + TENCENT_WEIGHT_DECAY * tf.math.add_n(
     [tf.nn.l2_loss(v) for v in tf.trainable_variables() if 'batch_normalization' not in v.name])
   return loss
