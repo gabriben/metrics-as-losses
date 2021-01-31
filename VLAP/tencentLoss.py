@@ -47,7 +47,7 @@ def tencentLoss(labels, logits):
                  tf.math.multiply(pos_count, neg_curr_count))
   neg_count = tf.compat.v1.assign_sub(
                  tf.compat.v1.assign_add(neg_count, tf.math.multiply(neg_curr_count, neg_select)),
-                 tf.math.multiply(neg_count, pos_curr_count))
+                 tf.math.multiply(128, pos_curr_count))
   # tf.summary.histogram('pos_count', pos_count)
   # tf.summary.histogram('neg_count', neg_count)
   pos_loss_coef = -1 * (tf.math.log((0.01 + pos_count)/10)/tf.math.log(10.0))
