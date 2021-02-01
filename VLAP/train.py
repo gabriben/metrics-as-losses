@@ -22,13 +22,13 @@ def train(pretrainedNet, trainDS, valDS, nLabels):
     tf.random.set_seed(12)
 
     eager = False
+    if LOSS_FUNCTION == "tencentLoss":
+        eager = True
     
     if LOSS_FUNCTION == "crossEntropy":
         l = tf.keras.losses.binary_crossentropy
     elif LOSS_FUNCTION == "focalLoss":
         l = tfa.losses.SigmoidFocalCrossEntropy(from_logits = True)
-    elif LOSS_FUNCTION == "tencentLoss":
-        eager = True
     else:
         l = globals()[LOSS_FUNCTION]
 
