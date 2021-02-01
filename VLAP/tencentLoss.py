@@ -5,7 +5,7 @@ import tensorflow as tf
 # TENCENT (original descriptions to the right)
 
 TENCENT_MASK_THRESH = 0.7 # "mask thres for balance pos neg"
-TENCENT_CLASS_NUM = 48 # "distinct class number"
+TENCENT_CLASS_NUM = 145 # "distinct class number"
 TENCENT_RANDOM_SEED = 1234 #  "Random sedd for neigitive class selected"
 TENCENT_WEIGHT_DECAY = 0.0001 # "Tainable Weight l2 loss factor."
 TENCENT_NEG_SELECT = 0.3 # "how many class within only negtive samples in a batch select to learn"
