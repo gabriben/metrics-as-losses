@@ -17,7 +17,8 @@ E = 1 # sigmoid offset hyperparam
 METRIC = "macroF1"
 MACRO_F1_THRESH = 0.5
 LAST_ACTIVATION = "sigmoid"
-IRRELEVANCE_THRESHOLD = 10
+IRRELEVANCE_THRESHOLD = 1000
+N_LABELS_THRESHOLD = 10
 
 # Huggingface
 
