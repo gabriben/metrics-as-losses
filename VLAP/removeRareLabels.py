@@ -15,7 +15,7 @@ def removeRareLabels(x, sep, irrelevanceThreshold = None, nLabelsThreshold = Non
       print("We will be ignoring these rare labels:", rare)
   elif nLabelsThreshold is not None:
       # Create a list of rare labels
-      rare = list(label_freq[0 : (nLabelsThreshold + 1)].index)
+      rare = list(label_freq[nLabelsThreshold : ].index)
       print("We will be ignoring these rare labels:", rare)    
 
       
