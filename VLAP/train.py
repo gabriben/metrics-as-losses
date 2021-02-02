@@ -32,7 +32,9 @@ def train(pretrainedNet, trainDS, valDS, nLabels):
     else:
         l = globals()[LOSS_FUNCTION]
 
-    model.layers[0].trainable = False
+    # the way to freeze pretrained weights with huggingface
+    if "transformers" in str(model.__class__):
+        model.layers[0].trainable = False
     
     model.compile(
       optimizer=tf.keras.optimizers.Adam(learning_rate=LR),
