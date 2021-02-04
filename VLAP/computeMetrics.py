@@ -5,11 +5,9 @@ import pandas as pd
 import scipy
 import mlflow
 
-def computeMetrics(preds, y_test_bin):
+def computeMetrics(preds, y_test_bin, thresholds):
 
 # preds = model.predict(test_ds).to_tuple()[0]
-
-    thresholds = [i/10 for i in range(1,10)]
     testResults = pd.DataFrame(columns = ["macroF1", "microF1", "weightedF1", "precision", "recall", "hammingLoss", "hammingScore"])
 
     for t in thresholds:
