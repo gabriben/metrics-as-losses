@@ -28,7 +28,9 @@ def train(pretrainedNet, trainDS, valDS, nLabels):
     if LOSS_FUNCTION == "crossEntropy":
         l = tf.keras.losses.binary_crossentropy
     elif LOSS_FUNCTION == "focalLoss":
-        l = tfa.losses.SigmoidFocalCrossEntropy(from_logits = True)
+        l = tfa.losses.SigmoidFocalCrossEntropy(from_logits = True,
+                                                alpha = FOCAL_ALPHA,
+                                                gamma = FOCAL_GAMMA)
     else:
         l = globals()[LOSS_FUNCTION]
 
