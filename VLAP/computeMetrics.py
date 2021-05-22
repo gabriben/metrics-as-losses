@@ -21,8 +21,8 @@ def computeMetrics(preds, y_test_bin, thresholds):
         testResults.loc[str(t), "recall"] = recall.mean()
         testResults.loc[str(t), "hammingLoss"] = hamming_loss(y_test_bin, preds > t)
         testResults.loc[str(t), "hammingScore"] = hammingScore(y_test_bin, preds > t)
-        testResults.loc[str(t), "jaccard"] = hammingScore(y_test_bin, preds > t)
-        testResults.loc[str(t), "AUROC"] = hammingScore(y_test_bin, preds > t)        
+        testResults.loc[str(t), "jaccard"] = jaccard_score(y_test_bin, preds > t, average = "weighted")
+        testResults.loc[str(t), "AUROC"] = roc_auc_score(y_test_bin, preds > t, average = "weighted")        
         
 
     testResults.to_csv("testResults.csv")
