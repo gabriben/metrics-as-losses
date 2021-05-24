@@ -31,4 +31,4 @@ def computeMetrics(preds, y_test_bin, thresholds):
     print("preds")
     print(scipy.stats.describe(preds.ravel()))
     print("test results")
-    print(testResults)
+    return(testResults)
