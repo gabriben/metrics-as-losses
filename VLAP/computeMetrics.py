@@ -33,6 +33,7 @@ def computeMetrics(preds, y_test_bin, thresholds):
 
     testResults.to_csv("testResults.csv")
     mlflow.log_artifact("testResults.csv")
+    mlflow.log_metric("mAP", testResults.loc["0.5","mAP"])
 
     print("preds")
     print(scipy.stats.describe(preds.ravel()))
