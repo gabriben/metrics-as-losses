@@ -17,6 +17,7 @@ from .learningCurves import learningCurves
 from .computeMetrics import computeMetrics
 from .hammingScore import hammingScore
 from .tencentLoss import tencentLoss
+from .mAP import mAP
 
 # https://stackoverflow.com/questions/1057431/how-to-load-all-modules-in-a-folder
 

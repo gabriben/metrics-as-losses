@@ -38,3 +38,30 @@ def mAP(targs, preds):
         # compute average precision
         ap[k] = average_precision(scores, targets)
     return 100 * ap.mean()
+
+#def TFmAP()
+
+# def validate_multi(val_loader, model, ema_model):
+#     print("starting validation")
+#     Sig = torch.nn.Sigmoid()
+#     preds_regular = []
+#     preds_ema = []
+#     targets = []
+#     for i, (input, target) in enumerate(val_loader):
+#         target = target
+#         target = target.max(dim=1)[0]
+#         # compute output
+#         with torch.no_grad():
+#             with autocast():
+#                 output_regular = Sig(model(input.cuda())).cpu()
+#                 output_ema = Sig(ema_model.module(input.cuda())).cpu()
+
+#         # for mAP calculation
+#         preds_regular.append(output_regular.cpu().detach())
+#         preds_ema.append(output_ema.cpu().detach())
+#         targets.append(target.cpu().detach())
+
+#     mAP_score_regular = mAP(torch.cat(targets).numpy(), torch.cat(preds_regular).numpy())
+#     mAP_score_ema = mAP(torch.cat(targets).numpy(), torch.cat(preds_ema).numpy())
+#     print("mAP score regular {:.2f}, mAP score EMA {:.2f}".format(mAP_score_regular, mAP_score_ema))
+#     return max(mAP_score_regular, mAP_score_ema)

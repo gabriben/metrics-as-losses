@@ -1,6 +1,7 @@
 from .hyperparameters import *
 from sklearn.metrics import f1_score, precision_recall_fscore_support, hamming_loss, jaccard_score, roc_auc_score
 from .hammingScore import hammingScore
+from .mAP import mAP
 import pandas as pd
 import scipy
 import mlflow
@@ -10,9 +11,10 @@ def computeMetrics(preds, y_test_bin, thresholds):
 # preds = model.predict(test_ds).to_tuple()[0]
     testResults = pd.DataFrame(columns = ["macroF1", "microF1", "weightedF1",
                                           "precision", "recall", "hammingLoss",
-                                          "hammingScore", "jaccard", "AUROC"])
+                                          "hammingScore", "jaccard", "AUROC", "mAP"])
 
     for t in thresholds:
+        testResults.loc[str(t), "mAP"] = mAP(y_test_bin, preds > t, average = "mAP")
         testResults.loc[str(t), "macroF1"] = f1_score(y_test_bin, preds > t, average = "macro")
         testResults.loc[str(t),"microF1"] = f1_score(y_test_bin, preds > t, average = "micro")
         testResults.loc[str(t),"weightedF1"] = f1_score(y_test_bin, preds > t, average = "weighted")
@@ -27,7 +29,6 @@ def computeMetrics(preds, y_test_bin, thresholds):
         except ValueError:
             testResults.loc[str(t), "AUROC"] = None
             pass
-        
         
 
     testResults.to_csv("testResults.csv")
