@@ -14,7 +14,7 @@ def computeMetrics(preds, y_test_bin, thresholds):
                                           "hammingScore", "jaccard", "AUROC", "mAP"])
 
     for t in thresholds:
-        testResults.loc[str(t), "mAP"] = mAP(y_test_bin, preds > t, average = "mAP")
+        testResults.loc[str(t), "mAP"] = mAP(y_test_bin, preds > t)
         testResults.loc[str(t), "macroF1"] = f1_score(y_test_bin, preds > t, average = "macro")
         testResults.loc[str(t),"microF1"] = f1_score(y_test_bin, preds > t, average = "micro")
         testResults.loc[str(t),"weightedF1"] = f1_score(y_test_bin, preds > t, average = "weighted")
