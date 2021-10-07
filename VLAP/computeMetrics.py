@@ -6,7 +6,7 @@ import pandas as pd
 import scipy
 import mlflow
 
-def computeMetrics(preds, y_test_bin, thresholds):
+def computeMetrics(preds, y_test_bin, thresholds = [0]):
 
 # preds = model.predict(test_ds).to_tuple()[0]
     testResults = pd.DataFrame(columns = ["macroF1", "microF1", "weightedF1",
