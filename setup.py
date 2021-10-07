@@ -15,6 +15,7 @@ setup(name='VLAP',
           'tensorflow_hub',
           'tensorflow_addons',
           'mlflow',
-          'numpy'
+          'numpy',
+          'transformers'
       ],
       zip_safe=False)
