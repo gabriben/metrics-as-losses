@@ -28,10 +28,10 @@ def asl(y, y_hat, from_logits = True, gamma_neg=4, gamma_pos=1, clip=0.05, eps=1
 
     # Asymmetric clipping
     if clip is not None and clip > 0:
-        tf.clip_by_value(y_hat_n + clip, clip_value_min = None , clip_value_max = 1)
+        tf.clip_by_value(y_hat_n + clip, clip_value_min = -1e8 , clip_value_max = 1)
 
-    loss = y * tf.math.log(tf.clip_by_value(y_hat, clip_value_min = eps))
-    loss = loss + y_n * tf.math.log(tf.clip_by_value(y_hat_n, clip_value_min = eps))
+    loss = y * tf.math.log(tf.clip_by_value(y_hat, clip_value_min = eps, clip_value_max = 1e8))
+    loss = loss + y_n * tf.math.log(tf.clip_by_value(y_hat_n, clip_value_min = eps, clip_value_max = 1e8))
 
     # Asymmetric Focusing
     if gamma_neg > 0 or gamma_pos > 0:
