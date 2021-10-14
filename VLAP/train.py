@@ -20,7 +20,7 @@ def train(pretrainedNet, trainDS, valDS, nLabels):
     # model = attachHead(pretrainedNet, nLabels)
     model = pretrainedNet
 
-    tf.random.set_seed(12)
+    #tf.random.set_seed(12)
 
     eager = False
     if LOSS_FUNCTION == "tencentLoss":
