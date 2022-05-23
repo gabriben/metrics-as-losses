@@ -13,6 +13,20 @@ We evaluate the proposed loss function on text and image datasets, and with a va
 sigmoidF1 outperforms other loss functions on one text and two image datasets over several metrics. 
 These results show the effectiveness of using inference-time metrics as loss functions for non-trivial classification problems like multilabel classification. 
 
+## sigmoidF1 Implementation
+
+We provide Pytorch and Tensorflow code to implement sigmoidF1. In pseudocode it looks like this:
+
+``` python
+# with y the ground truth and z the outcome of the last layer
+sig = 1 / (1 + exp(b * (z + c))) 
+tp = sum(sig * y, dim=0)
+fp = sum(sig * (1 - y), dim=0)
+fn = sum((1 - sig) * y, dim=0)
+sigmoid_f1 = 2*tp / (2*tp + fn + fp + 1e-16)
+```
+
+
 ## Citation
 
 ```
