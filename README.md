@@ -1,8 +1,10 @@
-# sigmoidF1: A Smooth F1 Score Surrogate Loss for Multilabel Classification
+# sigmoidF1: A Smooth F1 Score Surrogate Loss for Multilabel Classification 
+
+[paper](https://arxiv.org/pdf/2108.10566.pdf)
 
 > Gabriel Bénédict, Hendrick Vincent Koops, Daan Odijk, Maarten de Rijke
 
-*Abstract*
+**Abstract**
 
 Multilabel classification is the task of attributing multiple labels to examples via predictions. 
 Current models formulate a reduction of the multilabel setting into either multiple binary classifications or multiclass classification, allowing for the use of existing loss functions (sigmoid, cross-entropy, logistic, etc.). 
@@ -15,7 +17,7 @@ These results show the effectiveness of using inference-time metrics as loss fun
 
 ## sigmoidF1 Implementation
 
-We provide Pytorch and Tensorflow code to implement sigmoidF1. In pseudocode it looks like this:
+We provide [Pytorch](VLAP/pytorchLosses.py) and [Tensorflow](VLAP/sigmoidF1.py) code to implement sigmoidF1. In pseudocode it looks like this:
 
 ``` python
 # with y the ground truth and z the outcome of the last layer
