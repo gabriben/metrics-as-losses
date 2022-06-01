@@ -26,7 +26,7 @@ fn = sum((1 - sig) * y, dim=0)
 sigmoid_f1 = 2*tp / (2*tp + fn + fp + 1e-16)
 ```
 
-## running the code
+## basic example
 
 after installing VLAP from this repo, here is an example with the arXiV dataset, given an `arxiv` dataframe with two columns containing abstracts and categories:
 
