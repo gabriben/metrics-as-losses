@@ -46,3 +46,5 @@ config = AutoConfig.from_pretrained('distilbert-base-uncased')
 model = TFDistilBertForSequenceClassification.from_pretrained('distilbert-base-uncased', config = config)
 model, history = VLAP.train(model, train_ds, val_ds, num_classes)
 ```
+
+Hypers can be changed programmatically in [here](VLAP/hyperparameters.py).
