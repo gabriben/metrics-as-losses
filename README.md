@@ -2,7 +2,7 @@
 
 [paper](https://arxiv.org/pdf/2108.10566.pdf)
 
-> Gabriel Bénédict, Hendrick Vincent Koops, Daan Odijk, Maarten de Rijke
+> anonymized
 
 **Abstract**
 
@@ -26,21 +26,4 @@ tp = sum(sig * y, dim=0)
 fp = sum(sig * (1 - y), dim=0)
 fn = sum((1 - sig) * y, dim=0)
 sigmoid_f1 = 2*tp / (2*tp + fn + fp + 1e-16)
-```
-
-
-## Citation
-
-```
-@article{sigmoidF1,
-  author    = {Gabriel B{\'{e}}n{\'{e}}dict and
-               Vincent Koops and
-               Daan Odijk and
-               Maarten de Rijke},
-  title     = {sigmoidF1: {A} Smooth {F1} Score Surrogate Loss for Multilabel Classification},
-  year      = {2021},
-  url       = {https://arxiv.org/abs/2108.10566},
-  eprinttype = {arXiv},
-  eprint    = {2108.10566},
-}
 ```
