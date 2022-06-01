@@ -1,7 +1,5 @@
 # sigmoidF1: A Smooth F1 Score Surrogate Loss for Multilabel Classification 
 
-[paper](https://arxiv.org/pdf/2108.10566.pdf)
-
 > anonymized
 
 **Abstract**
@@ -26,4 +24,25 @@ tp = sum(sig * y, dim=0)
 fp = sum(sig * (1 - y), dim=0)
 fn = sum((1 - sig) * y, dim=0)
 sigmoid_f1 = 2*tp / (2*tp + fn + fp + 1e-16)
+```
+
+## running the code
+
+after installing VLAP from this repo, here is an example with the arXiV dataset, given an `arxiv` dataframe with two columns containing abstracts and categories:
+
+```
+from transformers import TFDistilBertForSequenceClassification, AutoConfig
+import VLAP
+
+X_train, X_val, X_test, y_train, y_val, y_test = VLAP.split(arxiv['abstract'], arxiv['categories'], [0.6, 0.2, 0.2] , r = 44)
+
+X_train_tokens = tokenizer(X_train.to_list(), truncation=True, padding=True)
+X_val_tokens = tokenizer(X_val.to_list(), truncation=True, padding=True)
+
+train_ds = VLAP.createDataset(dict(X_train_tokens), y_train_bin.astype(float), is_image = False)
+val_ds = VLAP.createDataset(dict(X_val_tokens), y_val_bin.astype(float), is_image = False)
+
+config = AutoConfig.from_pretrained('distilbert-base-uncased')
+model = TFDistilBertForSequenceClassification.from_pretrained('distilbert-base-uncased', config = config)
+model, history = VLAP.train(model, train_ds, val_ds, num_classes)
 ```
