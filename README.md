@@ -17,7 +17,7 @@ These results show the effectiveness of using inference-time metrics as loss fun
 
 We provide [Pytorch](VLAP/pytorchLosses.py) and [Tensorflow](VLAP/sigmoidF1.py) code to implement sigmoidF1. In pseudocode it looks like this:
 
-``` python
+```python
 # with y the ground truth and z the outcome of the last layer
 sig = 1 / (1 + exp(b * (z + c))) 
 tp = sum(sig * y, dim=0)
@@ -30,7 +30,7 @@ sigmoid_f1 = 2*tp / (2*tp + fn + fp + 1e-16)
 
 after installing VLAP from this repo, here is an example with the arXiV dataset, given an `arxiv` dataframe with two columns containing abstracts and categories:
 
-```
+```python
 from transformers import TFDistilBertForSequenceClassification, AutoConfig
 import VLAP
 
