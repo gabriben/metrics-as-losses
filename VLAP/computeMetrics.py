@@ -36,10 +36,53 @@ def computeMetrics(preds, y_test_bin, thresholds = [0]):
     if 0.8 in thresholds:
         mlflow.log_metric("mAP", testResults.loc["0.8","mAP"])
 
-    print("preds")
+    print("preds"
     print(scipy.stats.describe(preds.ravel()))
     print("test results")
     return(testResults)
+
+# reusing code starting at line 249 in https://github.com/allenai/elastic/blob/master/multilabel_classify.py
+def torchMetrics(pred, target):
+    tp = (pred + target).eq(2).sum(dim=0)
+    fp = (pred - target).eq(1).sum(dim=0)
+    fn = (pred - target).eq(-1).sum(dim=0)
+    tn = (pred + target).eq(0).sum(dim=0)
+    count = target.size(0)
+    rep = target.sum(dim=0)
+
+    this_tp = (pred + target).eq(2).sum()
+    this_fp = (pred - target).eq(1).sum()
+    this_fn = (pred - target).eq(-1).sum()
+    this_tn = (pred + target).eq(0).sum()
+
+    this_prec = this_tp.float() / (
+        this_tp + this_fp).float() * 100.0 if this_tp + this_fp != 0 else 0.0
+    this_rec = this_tp.float() / (
+        this_tp + this_fn).float() * 100.0 if this_tp + this_fn != 0 else 0.0
+
+    p_c = [float(tp[i].float() / (tp[i] + fp[i]).float()) * 100.0 if tp[
+                                                                         i] > 0 else 0.0
+           for i in range(len(tp))]
+    r_c = [float(tp[i].float() / (tp[i] + fn[i]).float()) * 100.0 if tp[
+                                                                         i] > 0 else 0.0
+           for i in range(len(tp))]
+    f_c = [2 * p_c[i] * r_c[i] / (p_c[i] + r_c[i]) if tp[i] > 0 else 0.0 for
+           i in range(len(tp))]
+
+    wf1 = [rep[i] * 2 * p_c[i] * r_c[i] / (p_c[i] + r_c[i]) if tp[i] > 0 else 0.0 for
+           i in range(len(tp))]
+
+    mean_p_c = sum(p_c) / len(p_c)
+    mean_r_c = sum(r_c) / len(r_c)
+    mean_f_c = sum(f_c) / len(f_c)
+    mean_wf1 = sum(wf1) / rep.sum()
+
+    p_o = tp.sum().float() / (tp + fp).sum().float() * 100.0
+    r_o = tp.sum().float() / (tp + fn).sum().float() * 100.0
+    f_o = 2 * p_o * r_o / (p_o + r_o)
+    return(mean_p_c, mean_r_c, mean_f_c, p_o, r_o, f_o, mean_wf1)
+
+
 
 # import pandas as pd
 # x = pd.DataFrame({'A': ["a"] * 3, 'B': range(3)})

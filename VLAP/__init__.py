@@ -14,7 +14,7 @@ from .train import train
 from .printTime import printTime
 from .split import split
 from .learningCurves import learningCurves
-from .computeMetrics import computeMetrics
+from .computeMetrics import computeMetrics, torchMetrics
 from .hammingScore import hammingScore
 from .tencentLoss import tencentLoss
 from .mAP import mAP
