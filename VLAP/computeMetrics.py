@@ -36,7 +36,7 @@ def computeMetrics(preds, y_test_bin, thresholds = [0]):
     if 0.8 in thresholds:
         mlflow.log_metric("mAP", testResults.loc["0.8","mAP"])
 
-    print("preds"
+    print("preds")
     print(scipy.stats.describe(preds.ravel()))
     print("test results")
     return(testResults)
