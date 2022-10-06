@@ -1,8 +1,12 @@
 from sklearn.metrics import f1_score
 import numpy as np
 
-def avgThresh(preds, y):
+def avgThresh(preds, y, columnwise = False):
 
+    if columnwise:
+        y = y.T
+        preds = preds.T
+    
     predsThresh = preds[..., None] < preds[:, None, :]
 
     F1 = np.zeros(preds.shape)
@@ -12,5 +16,8 @@ def avgThresh(preds, y):
 
     maxThresholds = np.argmax(F1, axis = 1)
     avg_thresh = np.mean(preds[:, maxThresholds[0]])
-    
-    return avg_thresh
+
+    if columnwise:
+        return avg_thresh.T
+    else:
+        return avg_thresh
