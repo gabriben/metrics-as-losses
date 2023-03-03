@@ -1,7 +1,5 @@
 # sigmoidF1: A Smooth F1 Score Surrogate Loss for Multilabel Classification 
 
-> anonymized
-
 **Abstract**
 
 Multilabel classification is the task of attributing multiple labels to examples via predictions. 
